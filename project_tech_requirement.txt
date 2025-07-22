@@ -1,0 +1,130 @@
+
+🛠️ Development Stack
+Language: Python 3.11 (Anaconda)
+
+Dependencies:
+
+torch + transformers
+
+bitsandbytes (quantization)
+
+sounddevice / PyAudio
+
+openai-whisper / faster-whisper
+
+bark / tts
+
+numpy, yaml, argparse
+
+Optional: langchain if planning structured chain expansions
+
+Hardware: Linux, NVIDIA GPU 4–8 GB VRAM
+
+
+📦 File structure
+
+voice_assistant/
+│
+├── main.py               # Entry point
+├── requirements.txt      # Dependencies for pip/conda
+├── config.yaml           # Model paths, device config
+│
+├── modules/
+│   ├── audio_io.py       # Microphone capture + speaker playback
+│   ├── stt.py            # Whisper transcription logic
+│   ├── llm.py            # LLM inference wrapper
+│   ├── tts.py            # Bark or TTS inference
+│   └── controller.py     # Pipeline orchestration
+│
+└── utils/
+    └── logger.py         # Logging helper
+
+
+📦 Universal architecture
+┌────────────┐        ┌────────────┐        ┌──────────────┐        ┌────────────┐
+│  Microphone│─Audio→ │  STT Model │─Text→ │     LLM      │─Text→ │   TTS Model │─Audio→ Speaker
+└────────────┘        └────────────┘        └──────────────┘        └────────────┘
+
+
+📦 MVP Modules
+1️⃣ Audio I/O Module
+
+Uses sounddevice or PyAudio for capturing PCM audio chunks
+
+Handles:
+
+Hotkey/hotword activation or manual press-to-talk
+
+Stop recording after silence or max duration
+
+Playback audio (wav) for output
+
+2️⃣ Speech-to-Text (STT) Module
+
+Uses Whisper (base.en or small.en)
+
+GPU accelerated if possible
+
+Outputs raw transcribed text
+
+3️⃣ LLM Processing Module
+
+Load quantized LLaMA2 or TinyLLaMA in 4-bit using:
+
+transformers + bitsandbytes
+
+or llama.cpp / ollama for easier integration
+
+Prompt:
+
+System message
+
+User transcribed text
+
+Maintains short context (last 1–3 turns only)
+
+4️⃣ Text-to-Speech (TTS) Module
+
+Uses Bark for realistic speech generation
+
+Generates WAV or PCM waveform for immediate playback
+
+Simple TTS fallback if GPU VRAM is tight
+
+5️⃣ Controller / Pipeline Orchestrator
+
+Coordinates:
+
+Capture → Transcribe → Generate → Synthesize → Playback
+
+Can use async/event loop or threading for non-blocking I/O
+
+CLI interface for initial development/debugging
+
+
+
+🪄 Agile Development Plan
+Sprint 1 (Core Pipeline Prototype)
+✅ Audio capture + playback working
+✅ Transcribe single utterance to text with Whisper
+✅ Generate a simple text reply using local LLM (quantized)
+✅ Print generated text for verification
+
+Sprint 2 (Integrate Speech Output)
+✅ Add Bark/Coqui TTS
+✅ Synthesize generated text to audio
+✅ Playback assistant’s speech response
+✅ Enable single-turn voice-to-voice conversation
+
+Sprint 3 (Refinements)
+✅ Loop for continuous conversation
+✅ Context buffer (last 1–3 exchanges)
+✅ Add optional web search for “who/what” queries (offline fallback)
+✅ CLI flags for debug/verbose/logging modes
+✅ Test latency and optimize for <3–4 sec response time
+
+
+🚀 Next Steps
+✅ Confirm you are ready to begin coding, starting with Sprint 1.
+✅ Let me know if you want me to generate the main.py scaffold + module stubs for you to start iterating immediately within your repo.
+✅ After Sprint 1, we will plan MVP test cases and optimization (quantization tuning, latency tests) for stability before moving to file system and reminder features.
