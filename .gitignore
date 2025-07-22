@@ -1,0 +1,106 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.pyd
+*.pyo
+*.egg-info/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# VSCode
+.vscode/
+
+# Environment
+.env
+.env.*
+*.env
+
+# Anaconda
+*.conda
+*.env
+*.h5
+*.hdf5
+*.ipynb
+*.npz
+*.pkl
+*.pickle
+*.db
+.DS_Store
+*.log
+*.sqlite3
+*.lock
+*.bak
+*.swp
+*.tmp
+*.old
+*.out
+*.run
+*.mlmodel
+*.onnx
+*.pth
+*.pt
+*.ckpt
+*.tflite
+*.pb
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+*.webm
+*.opus
+*.cache/
+.cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.eggs
+*.manifest
+*.spec
+
+# Conda environments
+.env/
+.venv/
+env/
+venv/
+ENV/
+
+# Model files
+models/
+checkpoints/
+
+# Data
+/data/
+*.csv
+*.tsv
+*.jsonl
+*.json
+*.zip
+*.tar.gz
+*.tar
+*.gz
+*.bz2
+*.7z
+*.rar
+
+# Audio
+*.wav
+*.mp3
+*.ogg
+*.flac
+*.m4a
+*.webm
+*.opus
+
+# Misc
+*.log
+nohup.out
+
+# System
+Thumbs.db
+.DS_Store
