@@ -1,0 +1,9 @@
+# Example config for LLM S2S project
+model:
+  stt_model_path: "models/whisper-base"
+  llm_model_path: "models/llama-7b"
+  tts_model_path: "models/coqui-tts"
+device: "cuda"
+audio:
+  sample_rate: 16000
+  chunk_size: 1024
